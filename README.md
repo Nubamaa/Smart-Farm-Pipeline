@@ -1,6 +1,6 @@
-# Smart Farm Enterprise Assignment
+# Smart-Farm-Pipeline
 
-This repository is the GitHub-ready base for the project. It includes:
+This repository is the GitHub-ready base for the Smart-Farm-Pipeline project. It includes:
 
 - A GitHub Pages-ready React landing page
 - The Arduino UNO R4 WiFi firmware for secure MQTT, photoresistor day/night detection, and the publish/sleep cycle
@@ -63,6 +63,8 @@ The project uses `gh-pages` for static hosting.
 3. In GitHub Pages settings, point the site to the `gh-pages` branch.
 
 The Vite config uses a relative base path, so the site can be served from GitHub Pages without extra routing changes.
+
+If you are publishing from GitHub Actions instead of the `gh-pages` branch, keep the workflow in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) enabled and set GitHub Pages to use the Actions source.
 
 ## Assignment Notes
 

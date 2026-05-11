@@ -32,11 +32,13 @@ return [{ json: {
 ```
 
 Supabase `Create a row` node mapping (fields)
-- `node_id` ← `{{$json.node_id}}`
-- `temperature` ← `{{$json.temperature}}`
-- `humidity` ← `{{$json.humidity}}`
-- `light` ← `{{$json.light}}`
-- `created_at` ← `{{$json.created_at}}`
+- `node_id` ← `={{$json.node_id}}`
+- `temperature` ← `={{$json.temperature}}`
+- `humidity` ← `={{$json.humidity}}`
+- `light` ← `={{$json.light}}`
+- `created_at` ← `={{$json.created_at}}`
+
+Make sure those fields are entered in n8n expression mode. If you paste the text into a plain text field, n8n will save the braces literally instead of resolving the values.
 
 Notes
 - If you run n8n in cloud or a server, store the Supabase `service_role` key in n8n credentials (secret). Use the service key only from the server side (n8n), not client-side.

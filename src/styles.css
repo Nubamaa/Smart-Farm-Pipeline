@@ -84,9 +84,9 @@ a {
 .app {
   position: relative;
   z-index: 1;
-  width: min(1120px, calc(100% - 2rem));
+  width: min(calc(100% - clamp(1.5rem, 4vw, 3.5rem)), 1600px);
   margin: 0 auto;
-  padding: 2rem 0 4rem;
+  padding: clamp(1rem, 2.5vw, 2rem) 0 4rem;
 }
 
 .card {
@@ -98,7 +98,7 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   padding: 2rem;
   border-radius: 28px;
@@ -123,10 +123,10 @@ p {
 }
 
 h1 {
-  font-size: clamp(2.7rem, 5vw, 5.6rem);
-  line-height: 0.95;
+  font-size: clamp(2.4rem, 4.5vw, 5rem);
+  line-height: 1.02;
   letter-spacing: -0.06em;
-  max-width: 11ch;
+  max-width: 12ch;
   margin: 0.8rem 0 1rem;
 }
 
@@ -143,7 +143,7 @@ h3 {
 }
 
 .lead {
-  max-width: 64ch;
+  max-width: 60ch;
   color: rgba(245, 239, 228, 0.78);
   font-size: 1.02rem;
 }
@@ -188,7 +188,7 @@ h3 {
 }
 
 .section {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .section-heading {
@@ -203,7 +203,7 @@ h3 {
 
 .phase-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
@@ -243,7 +243,7 @@ h3 {
 
 .split-section {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1rem;
 }
 
@@ -277,9 +277,392 @@ h3 {
 
 .footer-card {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   align-items: center;
+}
+
+.dashboard-page {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1600px);
+  margin: clamp(1rem, 2vw, 2rem) auto 0;
+  padding: 0 0 4rem;
+}
+
+.dashboard-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  padding: 2rem;
+  border-radius: 28px;
+  margin-bottom: 1rem;
+}
+
+.dashboard-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, auto));
+  grid-auto-flow: column;
+  gap: 0.85rem;
+  align-content: start;
+  padding: 1rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-meta > div {
+  padding: 0.85rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-meta strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+
+.dashboard-meta p {
+  margin: 0.35rem 0 0;
+  color: rgba(245, 239, 228, 0.68);
+  font-size: 0.88rem;
+}
+
+.node-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
+}
+
+.node-chip {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+}
+
+.node-chip.active {
+  background: rgba(239, 178, 106, 0.18);
+  border-color: rgba(239, 178, 106, 0.48);
+}
+
+.node-chip.muted {
+  cursor: default;
+  opacity: 0.8;
+}
+
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.live-card {
+  padding: 1.2rem;
+  border-radius: 22px;
+}
+
+.live-card.selected {
+  border-color: rgba(239, 178, 106, 0.6);
+  box-shadow: 0 0 0 1px rgba(239, 178, 106, 0.22), 0 26px 90px rgba(0, 0, 0, 0.38);
+}
+
+.live-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.live-card h3 {
+  margin: 0.3rem 0 0;
+  font-size: 1.8rem;
+}
+
+.live-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.live-metrics span,
+.metric-card p,
+.metric-footnote p,
+.live-updated {
+  color: rgba(245, 239, 228, 0.74);
+}
+
+.live-metrics strong {
+.summary-inline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary-node-selector {
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+.summary-inline > p {
+  margin: 0;
+  flex: 1 1 auto;
+}
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
+
+.live-updated {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+}
+
+.status-pill,
+.metric-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-online,
+.metric-status.ok {
+  background: rgba(43, 191, 153, 0.16);
+  color: #7ef0d1;
+  border: 1px solid rgba(43, 191, 153, 0.32);
+}
+
+.status-offline,
+.metric-status.warn {
+  background: rgba(255, 108, 108, 0.14);
+  color: #ffb4b4;
+  border: 1px solid rgba(255, 108, 108, 0.3);
+}
+
+.metric-status.neutral {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(245, 239, 228, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.analytics-section .analytics-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.alerts-uptime-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-col {
+  height: 100%;
+}
+
+.stacked-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stacked-top,
+.stacked-bottom {
+  padding: 12px 18px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  margin: 0 12px;
+}
+
+.summary-card {
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(16, 16, 18, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.donut-card {
+  min-height: 156px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-wrap {
+  width: 110px;
+  height: 110px;
+  margin: 8px 0 6px;
+}
+
+.donut-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 8px 0 4px;
+}
+
+.donut-center {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.trend-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 12px;
+  align-items: center;
+}
+
+.sparkline-wrap {
+  height: 48px;
+}
+
+.analytics-section .metric-card {
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.analytics-section .metric-card strong {
+  display: block;
+  margin: 0.35rem 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.analytics-section .metric-card p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.analytics-section .panel-label {
+  font-size: 11px;
+}
+
+.summary-card .panel-label,
+.summary-card p {
+  font-size: 11px;
+}
+
+.summary-card strong {
+  font-size: 1.15rem;
+}
+
+.donut-center {
+  font-size: 1.15rem;
+}
+
+.metric-card {
+  padding: 1.15rem;
+  border-radius: 22px;
+}
+
+.metric-card.wide {
+  grid-column: 1 / -1;
+}
+
+.metric-card strong {
+  display: block;
+  margin: 0.5rem 0 0.6rem;
+  font-size: 1.1rem;
+  line-height: 1.15;
+}
+
+.metric-card p {
+  margin-bottom: 0;
+}
+
+.metric-footnote {
+  margin-top: 1rem;
+  margin-bottom: 12px;
+  padding: 1rem 1.1rem;
+  border-radius: 20px;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.chart-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.chart-filter-btn {
+  height: 32px;
+  min-width: 36px;
+  padding: 0 8px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: rgba(245,239,228,0.9);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.chart-filter-btn.active {
+  background: rgba(239,178,106,0.18);
+  border-color: rgba(239,178,106,0.48);
+  color: #efb26a;
+}
+
+.chart-card {
+  padding: 1.1rem;
+  border-radius: 22px;
+}
+
+.chart-card h3 {
+  margin-bottom: 0.9rem;
+}
+
+.chart-body {
+  height: 320px;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 1.2rem;
+  text-align: center;
+  color: rgba(245, 239, 228, 0.72);
 }
 
 @keyframes drift {
@@ -294,26 +677,83 @@ h3 {
 
 @media (max-width: 1024px) {
   .phase-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .node-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chart-body {
+    height: 280px;
+  }
+
+  .analytics-grid,
+  .analytics-section .analytics-grid,
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .trend-card {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .summary-row,
+  .trend-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 840px) {
+  .node-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .split-section,
-  .footer-card,
-  .hero {
+  .dashboard-header {
+    padding: 1.4rem;
+  }
+
+  .chart-body {
+    height: 280px;
+  }
+
+  .analytics-grid,
+  .analytics-section .analytics-grid,
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .trend-card {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .summary-row,
+  .trend-card {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
   .app {
-    width: min(100% - 1rem, 1120px);
-    padding-top: 0.7rem;
+    width: 100%;
+    padding: 0.75rem 0.75rem 3rem;
+  }
+
+  .dashboard-meta {
+    grid-template-columns: 1fr;
   }
 
   .hero,
   .checklist-card,
   .analytics-card,
-  .footer-card {
+  .footer-card,
+  .dashboard-header,
+  .metric-card,
+  .chart-card {
     padding: 1.1rem;
     border-radius: 20px;
   }
@@ -322,7 +762,32 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .node-grid {
+    grid-template-columns: 1fr;
+  }
+
   h1 {
     max-width: 100%;
+  }
+
+  .chart-body {
+    height: 240px;
+  }
+
+  .analytics-grid,
+  .analytics-section .analytics-grid,
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .trend-card {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-row,
+  .summary-stack,
+  .alerts-uptime-row,
+  .summary-row,
+  .trend-card {
+    grid-template-columns: 1fr;
   }
 }
