@@ -33,6 +33,13 @@ VITE_SUPABASE_ANON_KEY=your-anon-public-key
 
 4. Restart the dev server. The dashboard will poll the `sensor_logs` table and show live readings.
 
+For GitHub Pages, add these repository secrets in GitHub Settings → Secrets and variables → Actions:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+The Pages workflow reads those secrets during the build, so the deployed static site can fetch Supabase data in the browser.
+
 Note: For GitHub Pages the site is static and cannot directly use the anon key safely in a public repository — instead use a small serverless proxy or restrict keys in Supabase Row Level Security as appropriate for your course.
 
 ## Useful docs
